@@ -1,0 +1,38 @@
+.MoviesPageQuery-container {
+  padding: 20px;
+}
+
+.MoviesPageQuery-list {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+}
+
+.MoviesPageQuery-item {
+  text-align: center;
+  padding: 20px;
+  background: #fff;
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14),
+    0px 2px 1px rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  transition: all 250ms linear;
+
+  & img {
+    width: 100%;
+    height: 336px;
+    border-radius: 4px;
+  }
+
+  &:hover,
+  &:focus {
+    transform: scale(1.02);
+    background: rgba(252, 245, 245, 0.575);
+  }
+}
+
+.MoviesPageQuery-title {
+  margin-top: 20px;
+  font-size: 18px;
+  color: rgba(83, 83, 83, 0.767);
+}

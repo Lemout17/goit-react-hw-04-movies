@@ -1,0 +1,39 @@
+.Cast-container {
+  padding: 0 50px;
+  margin-top: 20px;
+  text-align: center;
+}
+
+.CastList {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+}
+
+.CastList-item {
+  text-align: center;
+
+  background: #fff;
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14),
+    0px 2px 1px rgba(0, 0, 0, 0.2);
+  border-radius: 0px 0px 4px 4px;
+
+  & img {
+    height: 330px;
+  }
+}
+
+.Cast-text-container {
+  padding: 10px;
+}
+
+.Cast-name {
+  margin-bottom: 10px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.Cast-text {
+  font-size: 16px;
+}

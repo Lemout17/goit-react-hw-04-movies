@@ -1,0 +1,44 @@
+.HomeView-content {
+  text-align: center;
+}
+
+.Home-title {
+  margin: 20px 0;
+  text-align: center;
+}
+
+.HomeList {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  padding: 20px;
+}
+
+.HomeList-item {
+  text-align: center;
+  padding: 20px;
+  background: #fff;
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14),
+    0px 2px 1px rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+
+  transition: all 250ms linear;
+
+  &:hover,
+  &:focus {
+    transform: scale(1.02);
+    background: rgba(252, 245, 245, 0.575);
+  }
+
+  & img {
+    border-radius: 4px;
+  }
+}
+
+.HomeList-title {
+  height: 50px;
+  margin-bottom: 20px;
+  font-size: 20px;
+  color: rgba(83, 83, 83, 0.767);
+}

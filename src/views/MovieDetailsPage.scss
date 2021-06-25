@@ -1,0 +1,52 @@
+.MovieDetailsPage-container {
+  position: relative;
+  text-align: center;
+}
+
+.MovieDetails-button {
+  position: absolute;
+  top: 56px;
+  left: 52px;
+  padding: 7px 21px;
+  border: none;
+  border-radius: 4px;
+  color: inherit;
+
+  background-color: #7c9fec;
+
+  &:hover,
+  &:focus {
+    transform: scale(1.02);
+    color: white;
+    background-color: #6791eb;
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14),
+      0px 2px 1px rgba(0, 0, 0, 0.2);
+  }
+}
+
+.MovieCast-list {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 20px;
+
+  background-color: rgba(173, 216, 230, 0.726);
+}
+
+.MovieCast-item {
+  color: black;
+
+  &:first-child {
+    margin-right: 20px;
+  }
+}
+
+.MovieDetails-link {
+  color: black;
+
+  &--active {
+    color: #cd3287;
+    text-decoration: underline;
+  }
+}
