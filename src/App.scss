@@ -5,9 +5,11 @@
 .Header {
   display: flex;
   justify-content: center;
-  padding: 20px;
-
-  background-color: rgb(124, 159, 236);
+  padding: 40px;
+  background-image: url('./img/header-bg-2.png');
+  background-position: center;
+  background-size: cover;
+  // background-color: rgb(124, 159, 236);
   box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14),
     0px 2px 1px rgba(0, 0, 0, 0.2);
 }
@@ -17,16 +19,16 @@
 }
 
 .NavLink {
-  font-size: 20px;
-  color: currentColor;
+  font-size: 2.1em;
+
   &:first-child {
     margin-right: 30px;
   }
 }
 
 .NavLink--active {
-  color: rgb(205, 50, 135);
-  text-decoration: underline;
+  border-radius: 4px;
+  box-shadow: 0px 15px 20px 10px rgba(21, 141, 219, 0.6) inset;
 }
 
 .Return-button {

@@ -14,43 +14,53 @@ const MovieDetails = ({
   budget,
   revenue,
   tag,
-}) => (
-  <div className={s.container}>
-    <h1 className={s.title}>{title}</h1>
+}) => {
+  const normalizedBudget = budget
+    .toString()
+    .replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
 
-    <div className={s.content}>
-      <img src={url ? `${baseUrl}${url}` : defaultImage} alt={title} />
+  const normalizedRevenue = revenue
+    .toString()
+    .replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
 
-      <div className={s.textContainer}>
-        <h2 className={s.tagline}>{tag}</h2>
-        <h2 className={s.subtitle}>Overview:</h2>
+  return (
+    <div className={s.container}>
+      <h1 className={s.title}>{title}</h1>
 
-        <p className={s.text}>{desc}</p>
+      <div className={s.content}>
+        <img src={url ? `${baseUrl}${url}` : defaultImage} alt={title} />
 
-        <p className={s.score}>
-          Rating: {votea} ({votec})
-        </p>
+        <div className={s.textContainer}>
+          <h2 className={s.tagline}>{tag}</h2>
+          <h2 className={s.subtitle}>Overview:</h2>
 
-        <p className={s.score}>Release date: {date}</p>
+          <p className={s.text}>{desc}</p>
 
-        <p className={s.score}>Budget: {budget}$</p>
+          <p className={s.score}>
+            Rating: {votea} ({votec})
+          </p>
 
-        <p className={s.score}>Revenue: {revenue}$</p>
+          <p className={s.score}>Release date: {date}</p>
 
-        <h2 className={s.subtitle}>Genres:</h2>
+          <p className={s.score}>Budget: {normalizedBudget}$</p>
 
-        <ul className={s.list}>
-          {genres &&
-            genres.map(({ id, name }) => (
-              <li className={s.item} key={id}>
-                {name}
-              </li>
-            ))}
-        </ul>
+          <p className={s.score}>Revenue: {normalizedRevenue}$</p>
+
+          <h2 className={s.subtitle}>Genres:</h2>
+
+          <ul className={s.list}>
+            {genres &&
+              genres.map(({ id, name }) => (
+                <li className={s.item} key={id}>
+                  {name}
+                </li>
+              ))}
+          </ul>
+        </div>
       </div>
     </div>
-  </div>
-);
+  );
+};
 
 MovieDetails.defaultProps = {
   bydget: 0,

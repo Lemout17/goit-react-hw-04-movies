@@ -1,5 +1,6 @@
 import { NavLink } from 'react-router-dom';
 import routes from '../../routes';
+import { Button } from '@material-ui/core';
 
 const Navigation = () => {
   return (
@@ -12,7 +13,9 @@ const Navigation = () => {
             className="NavLink"
             activeClassName="NavLink--active"
           >
-            Home
+            <Button variant="outlined" color="primary" size="large">
+              Home
+            </Button>
           </NavLink>
         </li>
         <li>
@@ -21,7 +24,9 @@ const Navigation = () => {
             className="NavLink"
             activeClassName="NavLink--active"
           >
-            Movies
+            <Button variant="outlined" color="secondary" size="large">
+              movies
+            </Button>
           </NavLink>
         </li>
       </ul>
