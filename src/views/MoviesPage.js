@@ -1,5 +1,4 @@
 import { Component } from 'react';
-import { withRouter } from 'react-router';
 import MoviesPageQuery from '../components/MoviesPageQuery';
 import API from '../services/moviesApi';
 import SearchBar from '../components/SearchBar';
@@ -65,10 +64,10 @@ class MoviesPage extends Component {
           <Loader type="Audio" color="#00BFFF" height={80} width={80} />
         )}
 
-        <MoviesPageQuery movies={movies} baseUrl={base_url} />
+        {movies && <MoviesPageQuery movies={movies} baseUrl={base_url} />}
       </div>
     );
   }
 }
 
-export default withRouter(MoviesPage);
+export default MoviesPage;

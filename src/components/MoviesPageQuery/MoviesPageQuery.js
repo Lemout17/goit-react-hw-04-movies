@@ -1,4 +1,5 @@
 import { Link, withRouter } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import './MoviesPageQuery.scss';
 import defaultImage from '../../img/default.png';
 
@@ -35,6 +36,18 @@ const MoviesPageQuery = ({ movies, location, baseUrl }) => {
       </ul>
     </div>
   );
+};
+
+MoviesPageQuery.defaultProps = {
+  poster_path: defaultImage,
+};
+
+MoviesPageQuery.propTypes = {
+  poster_path: PropTypes.string,
+  id: PropTypes.number.isRequired,
+  title: PropTypes.string.isRequired,
+  location: PropTypes.shape().isRequired,
+  movies: PropTypes.arrayOf(PropTypes.shape).isRequired,
 };
 
 export default withRouter(MoviesPageQuery);

@@ -1,6 +1,6 @@
 import s from './MovieDetails.module.scss';
 import PropTypes from 'prop-types';
-import defaultImage from '../../img/default.png'
+import defaultImage from '../../img/default.png';
 
 const MovieDetails = ({
   title,
@@ -11,16 +11,18 @@ const MovieDetails = ({
   genres,
   url,
   baseUrl,
+  budget,
+  revenue,
+  tag,
 }) => (
   <div className={s.container}>
     <h1 className={s.title}>{title}</h1>
 
     <div className={s.content}>
-      <img src={
-                    profile_path ? `${base_url}${profile_path}` : defaultImage
-                  } alt={title} />
+      <img src={url ? `${baseUrl}${url}` : defaultImage} alt={title} />
 
       <div className={s.textContainer}>
+        <h2 className={s.tagline}>{tag}</h2>
         <h2 className={s.subtitle}>Overview:</h2>
 
         <p className={s.text}>{desc}</p>
@@ -28,6 +30,12 @@ const MovieDetails = ({
         <p className={s.score}>
           Rating: {votea} ({votec})
         </p>
+
+        <p className={s.score}>Release date: {date}</p>
+
+        <p className={s.score}>Budget: {budget}$</p>
+
+        <p className={s.score}>Revenue: {revenue}$</p>
 
         <h2 className={s.subtitle}>Genres:</h2>
 
@@ -44,26 +52,28 @@ const MovieDetails = ({
   </div>
 );
 
-
 MovieDetails.defaultProps = {
-  poster: defaultIm
-    
-  budget: 0,
+  bydget: 0,
   revenue: 0,
-  average: 0,
-  count: 0,
-  date: '00-00-0000',
+  votea: 0,
+  data: 0,
+  votec: 0,
+  url: defaultImage,
+  tag: null,
 };
 
 MovieDetails.propTypes = {
   title: PropTypes.string.isRequired,
   date: PropTypes.string,
+  tag: PropTypes.string,
   votea: PropTypes.number,
   votec: PropTypes.number,
   desc: PropTypes.string.isRequired,
   genres: PropTypes.arrayOf(PropTypes.shape).isRequired,
   url: PropTypes.string,
   baseUrl: PropTypes.string,
+  budget: PropTypes.number,
+  revenue: PropTypes.number,
 };
 
 export default MovieDetails;

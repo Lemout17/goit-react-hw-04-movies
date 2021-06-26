@@ -20,8 +20,9 @@ export default class MovieDetailsPage extends Component {
     release_date: null,
     vote_count: null,
     vote_average: null,
-    release_date: null,
     budget: null,
+    revenue: null,
+    tagline: null,
     base_url: 'https://image.tmdb.org/t/p/w500',
   };
 
@@ -55,15 +56,18 @@ export default class MovieDetailsPage extends Component {
 
     const {
       isLoaded,
+      release_date,
       budget,
       original_title,
-      release_date,
+      tagline,
       vote_average,
       vote_count,
       overview,
       genres,
       poster_path,
       base_url,
+      revenue,
+      popularity,
     } = this.state;
 
     return (
@@ -80,17 +84,22 @@ export default class MovieDetailsPage extends Component {
           {'<< Previous page'}
         </button>
 
-        <MovieDetails
-          title={original_title}
-          date={release_date}
-          votea={vote_average}
-          votec={vote_count}
-          desc={overview}
-          genres={genres}
-          url={poster_path}
-          baseUrl={base_url}
-          budget={budget}
-        />
+        {original_title && (
+          <MovieDetails
+            title={original_title}
+            date={release_date}
+            votea={vote_average}
+            votec={vote_count}
+            desc={overview}
+            genres={genres}
+            url={poster_path}
+            baseUrl={base_url}
+            budget={budget}
+            revenue={revenue}
+            tag={tagline}
+            popularity={popularity}
+          />
+        )}
 
         <ul className="MovieCast-list">
           <li className="MovieCast-item">

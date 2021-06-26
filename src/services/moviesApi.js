@@ -31,7 +31,7 @@ const getMovieReview = movieId => {
     `/movie/${movieId}/reviews?api_key=${API_KEY}&language=en-US&page=1`,
   );
 };
-
+// eslint-disable-next-line
 export default {
   getMovieTrends,
   getMovieByQuery,

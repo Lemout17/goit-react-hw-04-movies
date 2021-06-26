@@ -1,6 +1,7 @@
 import { Component } from 'react';
 import API from '../../services/moviesApi';
 import Loader from 'react-loader-spinner';
+import PropTypes from 'prop-types';
 import './Reviews.scss';
 
 export default class Reviews extends Component {
@@ -46,3 +47,7 @@ export default class Reviews extends Component {
     );
   }
 }
+
+Reviews.propTypes = {
+  movieId: PropTypes.number.isRequired,
+};

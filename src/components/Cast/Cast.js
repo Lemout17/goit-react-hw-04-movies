@@ -1,6 +1,6 @@
 import { Component } from 'react';
 import API from '../../services/moviesApi';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import './Cast.scss';
 import defaultImage from '../../img/default.png';
 import Loader from 'react-loader-spinner';
@@ -14,6 +14,8 @@ export default class Cast extends Component {
 
   async componentDidMount() {
     const movieId = this.props.id;
+
+    console.log(movieId);
 
     this.setState({ isLoaded: true });
 
@@ -54,6 +56,10 @@ export default class Cast extends Component {
   }
 }
 
-Cast.defaulProps = {
+Cast.defaultProps = {
   profile_path: defaultImage,
+};
+
+Cast.propTypes = {
+  movieId: PropTypes.number.isRequired,
 };
