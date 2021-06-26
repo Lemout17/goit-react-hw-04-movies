@@ -60,6 +60,8 @@ MovieDetails.defaultProps = {
   votec: 0,
   url: defaultImage,
   tag: null,
+  title: 'Nothing found',
+  desc: '',
 };
 
 MovieDetails.propTypes = {
@@ -68,8 +70,8 @@ MovieDetails.propTypes = {
   tag: PropTypes.string,
   votea: PropTypes.number,
   votec: PropTypes.number,
-  desc: PropTypes.string.isRequired,
-  genres: PropTypes.arrayOf(PropTypes.shape).isRequired,
+  desc: PropTypes.string,
+  genres: PropTypes.array,
   url: PropTypes.string,
   baseUrl: PropTypes.string,
   budget: PropTypes.number,

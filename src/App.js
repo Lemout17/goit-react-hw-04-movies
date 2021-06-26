@@ -1,27 +1,35 @@
 import './App.scss';
-import { Component } from 'react';
+import { Suspense, lazy } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import routes from './routes';
-import HomeView from './views/HomeView';
-import MoviesDetailView from './views/MovieDetailsPage';
-import MoviesPage from './views/MoviesPage';
 import AppBar from './components/AppBar';
+import Loader from 'react-loader-spinner';
 
-export default class App extends Component {
-  state = {};
+const HomeView = lazy(() =>
+  import('./views/HomeView.js' /* webpackChunkName: "home-page" */),
+);
+const MoviesDetailView = lazy(() =>
+  import('./views/MovieDetailsPage.js' /* webpackChunkName: "movie-details" */),
+);
+const MoviesPage = lazy(() =>
+  import('./views/MoviesPage.js' /* webpackChunkName: "movies-page" */),
+);
 
-  render() {
-    return (
-      <div>
-        <AppBar />
-        <Switch>
-          <Route exact path={routes.home} component={HomeView} />
+const App = () => (
+  <div>
+    <AppBar />
+    <Suspense
+      fallback={<Loader type="Audio" color="#00BFFF" height={80} width={80} />}
+    >
+      <Switch>
+        <Route exact path={routes.home} component={HomeView} />
 
-          <Route path={routes.movieId} component={MoviesDetailView} />
+        <Route path={routes.movieId} component={MoviesDetailView} />
 
-          <Route path={routes.movies} component={MoviesPage} />
-        </Switch>
-      </div>
-    );
-  }
-}
+        <Route path={routes.movies} component={MoviesPage} />
+      </Switch>
+    </Suspense>
+  </div>
+);
+
+export default App;

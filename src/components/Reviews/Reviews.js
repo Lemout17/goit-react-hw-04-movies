@@ -1,13 +1,12 @@
 import { Component } from 'react';
 import API from '../../services/moviesApi';
-import Loader from 'react-loader-spinner';
+
 import PropTypes from 'prop-types';
 import './Reviews.scss';
 
 export default class Reviews extends Component {
   state = {
     reviews: null,
-    isLoaded: false,
   };
 
   async componentDidMount() {
@@ -16,18 +15,14 @@ export default class Reviews extends Component {
 
     const response = await API.getMovieReview(movieId);
 
-    this.setState({ reviews: response.data.results, isLoaded: false });
+    this.setState({ reviews: response.data.results });
   }
 
   render() {
-    const { reviews, isLoaded } = this.state;
+    const { reviews } = this.state;
 
     return (
       <div className="Reviews-container ">
-        {isLoaded && (
-          <Loader type="Audio" color="#00BFFF" height={80} width={80} />
-        )}
-
         <ul className="ReviewsList">
           {reviews && reviews.length > 0
             ? reviews.map(({ id, author, content, url }) => (
@@ -48,6 +43,13 @@ export default class Reviews extends Component {
   }
 }
 
+Reviews.defaultProps = {
+  author: 'Unknown',
+};
+
 Reviews.propTypes = {
-  movieId: PropTypes.number.isRequired,
+  id: PropTypes.number,
+  author: PropTypes.string,
+  content: PropTypes.string,
+  url: PropTypes.string,
 };

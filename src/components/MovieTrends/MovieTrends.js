@@ -32,13 +32,14 @@ const MovieTrends = ({ movies, baseUrl, location }) => {
 
 MovieTrends.defaultProps = {
   poster_path: defaultImage,
+  title: 'Nothing Found',
 };
 
 MovieTrends.propTypes = {
   movies: PropTypes.arrayOf(PropTypes.shape).isRequired,
   baseUrl: PropTypes.string,
-  title: PropTypes.string.isRequired,
-  id: PropTypes.number.isRequired,
+  title: PropTypes.string,
+  id: PropTypes.number,
   poster_path: PropTypes.string,
   location: PropTypes.shape().isRequired,
 };

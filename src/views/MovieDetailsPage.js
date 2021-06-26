@@ -1,16 +1,20 @@
-import { Component } from 'react';
+import { Component, Suspense, lazy } from 'react';
 import { Route, NavLink } from 'react-router-dom';
 import MovieDetails from '../components/MovieDetails';
-import Cast from '../components/Cast';
-import Reviews from '../components/Reviews';
 import routes from '../routes';
 import './MovieDetailsPage.scss';
 import API from '../services/moviesApi';
 import Loader from 'react-loader-spinner';
 
+const Cast = lazy(() =>
+  import('../components/Cast' /* webpackChunkName: "cast-view" */),
+);
+const Reviews = lazy(() =>
+  import('../components/Reviews' /* webpackChunkName: "reviews-view" */),
+);
+
 export default class MovieDetailsPage extends Component {
   state = {
-    isLoaded: false,
     id: null,
     original_title: null,
     overview: null,
@@ -29,13 +33,10 @@ export default class MovieDetailsPage extends Component {
   async componentDidMount() {
     const movieId = this.props.match.params.movieId;
 
-    this.setState({ isLoaded: true });
-
     const response = await API.getMoviesDetail(movieId);
 
     this.setState({
       ...response.data,
-      isLoaded: false,
     });
   }
 
@@ -55,7 +56,6 @@ export default class MovieDetailsPage extends Component {
     };
 
     const {
-      isLoaded,
       release_date,
       budget,
       original_title,
@@ -72,10 +72,6 @@ export default class MovieDetailsPage extends Component {
 
     return (
       <div className="MovieDetailsPage-container">
-        {isLoaded && (
-          <Loader type="Audio" color="#00BFFF" height={80} width={80} />
-        )}
-
         <button
           className="MovieDetails-button"
           type="button"
@@ -133,14 +129,20 @@ export default class MovieDetailsPage extends Component {
           </li>
         </ul>
 
-        <Route
-          path={`${match.path}/cast`}
-          render={() => <Cast id={movieId} />}
-        />
-        <Route
-          path={`${match.path}/review`}
-          render={() => <Reviews id={movieId} />}
-        />
+        <Suspense
+          fallback={
+            <Loader type="Audio" color="#00BFFF" height={80} width={80} />
+          }
+        >
+          <Route
+            path={`${match.path}/cast`}
+            render={() => <Cast id={movieId} />}
+          />
+          <Route
+            path={`${match.path}/review`}
+            render={() => <Reviews id={movieId} />}
+          />
+        </Suspense>
       </div>
     );
   }

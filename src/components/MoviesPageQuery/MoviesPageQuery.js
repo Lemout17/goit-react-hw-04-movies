@@ -40,14 +40,15 @@ const MoviesPageQuery = ({ movies, location, baseUrl }) => {
 
 MoviesPageQuery.defaultProps = {
   poster_path: defaultImage,
+  title: 'Nothing Found',
 };
 
 MoviesPageQuery.propTypes = {
   poster_path: PropTypes.string,
-  id: PropTypes.number.isRequired,
-  title: PropTypes.string.isRequired,
-  location: PropTypes.shape().isRequired,
-  movies: PropTypes.arrayOf(PropTypes.shape).isRequired,
+  id: PropTypes.number,
+  title: PropTypes.string,
+  location: PropTypes.object.isRequired,
+  movies: PropTypes.array.isRequired,
 };
 
 export default withRouter(MoviesPageQuery);

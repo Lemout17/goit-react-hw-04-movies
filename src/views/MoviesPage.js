@@ -3,13 +3,11 @@ import MoviesPageQuery from '../components/MoviesPageQuery';
 import API from '../services/moviesApi';
 import SearchBar from '../components/SearchBar';
 import queryString from 'query-string';
-import Loader from 'react-loader-spinner';
 
 class MoviesPage extends Component {
   state = {
     query: '',
     movies: [],
-    isLoaded: false,
     base_url: 'https://image.tmdb.org/t/p/w500',
   };
 
@@ -33,15 +31,11 @@ class MoviesPage extends Component {
   async fetchMovies() {
     const { query } = this.state;
 
-    this.setState({ isLoaded: true });
-
-    API.getMovieByQuery(query)
-      .then(data => {
-        this.setState({
-          movies: data,
-        });
-      })
-      .finally(() => this.setState({ isLoaded: false }));
+    API.getMovieByQuery(query).then(data => {
+      this.setState({
+        movies: data,
+      });
+    });
   }
 
   onChangeQuery = query => {
@@ -54,15 +48,11 @@ class MoviesPage extends Component {
   getQueryFromProps = props => queryString.parse(props.location.search);
 
   render() {
-    const { movies, base_url, isLoaded } = this.state;
+    const { movies, base_url } = this.state;
 
     return (
       <div className="Movies-container">
         <SearchBar onSubmit={this.onChangeQuery} />
-
-        {isLoaded && (
-          <Loader type="Audio" color="#00BFFF" height={80} width={80} />
-        )}
 
         {movies && <MoviesPageQuery movies={movies} baseUrl={base_url} />}
       </div>

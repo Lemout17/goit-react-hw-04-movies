@@ -3,36 +3,27 @@ import API from '../../services/moviesApi';
 import PropTypes from 'prop-types';
 import './Cast.scss';
 import defaultImage from '../../img/default.png';
-import Loader from 'react-loader-spinner';
 
 export default class Cast extends Component {
   state = {
     cast: null,
-    isLoaded: false,
+
     base_url: 'https://image.tmdb.org/t/p/w500',
   };
 
   async componentDidMount() {
     const movieId = this.props.id;
 
-    console.log(movieId);
-
-    this.setState({ isLoaded: true });
-
     const response = await API.getMovieCast(movieId);
 
-    this.setState({ cast: response.data.cast, isLoaded: false });
+    this.setState({ cast: response.data.cast });
   }
 
   render() {
-    const { cast, base_url, isLoaded } = this.state;
+    const { cast, base_url } = this.state;
 
     return (
       <div className="Cast-container">
-        {isLoaded && (
-          <Loader type="Audio" color="#00BFFF" height={80} width={80} />
-        )}
-
         <ul className="CastList">
           {cast &&
             cast.map(({ id, name, character, profile_path }) => (
@@ -58,8 +49,13 @@ export default class Cast extends Component {
 
 Cast.defaultProps = {
   profile_path: defaultImage,
+  name: 'Unknown',
+  character: 'Unknown',
 };
 
 Cast.propTypes = {
-  movieId: PropTypes.number.isRequired,
+  id: PropTypes.number,
+  name: PropTypes.string,
+  character: PropTypes.string,
+  profile_path: PropTypes.string,
 };
