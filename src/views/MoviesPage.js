@@ -14,6 +14,8 @@ class MoviesPage extends Component {
   componentDidMount = () => {
     const { query } = this.getQueryFromProps(this.props);
 
+    console.log('query', query);
+
     if (query) {
       this.setState({ query });
     }

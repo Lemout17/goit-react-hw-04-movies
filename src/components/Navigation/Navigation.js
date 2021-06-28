@@ -25,7 +25,7 @@ const Navigation = () => {
             activeClassName="NavLink--active"
           >
             <Button variant="outlined" color="secondary" size="large">
-              movies
+              Movies
             </Button>
           </NavLink>
         </li>

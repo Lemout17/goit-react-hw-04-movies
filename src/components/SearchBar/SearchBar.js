@@ -17,8 +17,6 @@ export default class SearchBar extends Component {
     e.preventDefault();
 
     this.props.onSubmit(query);
-
-    this.setState({ query: '' });
   };
 
   render() {

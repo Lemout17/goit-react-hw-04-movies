@@ -2,6 +2,7 @@ import { Link, withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import './MoviesPageQuery.scss';
 import defaultImage from '../../img/default.png';
+import MoviesPageQueryItem from './MoviesPageQueryItem';
 
 const MoviesPageQuery = ({ movies, location, baseUrl }) => {
   return (
@@ -18,20 +19,14 @@ const MoviesPageQuery = ({ movies, location, baseUrl }) => {
                   },
                 }}
               >
-                <div>
-                  <div>
-                    <img
-                      src={
-                        poster_path ? `${baseUrl}${poster_path}` : defaultImage
-                      }
-                      alt={title}
-                    />
-                  </div>
-
-                  <h3 className="MoviesPageQuery-title">{title}</h3>
-                </div>
+                <MoviesPageQueryItem
+                  poster={poster_path}
+                  title={title}
+                  baseUrl={baseUrl}
+                  defaultImage={defaultImage}
+                />
               </Link>
-            </li>
+            </li>w
           ))}
       </ul>
     </div>

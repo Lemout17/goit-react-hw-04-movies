@@ -1,4 +1,37 @@
 {
+  "files.autoSave": "onFocusChange",
+  "editor.tabSize": 2,
+  "prettier.printWidth": 80,
+  "prettier.semi": true,
+  "prettier.arrowParens": "avoid",
+  "prettier.htmlWhitespaceSensitivity": "ignore",
+  "prettier.proseWrap": "always",
+  "prettier.trailingComma": "all",
+  "prettier.useTabs": false,
+  "prettier.bracketSpacing": true,
+  "prettier.insertPragma": false,
+  "prettier.jsxBracketSameLine": false,
+  "prettier.jsxSingleQuote": false,
+  "prettier.quoteProps": "as-needed",
+  "prettier.requirePragma": false,
+  "prettier.singleQuote": true,
+  "prettier.tabWidth": 2,
+  "prettier.vueIndentScriptAndStyle": false,
+  "editor.maxTokenizationLineLength": 60000,
+  "editor.formatOnPaste": true,
+  "editor.formatOnSave": true,
+  "editor.formatOnType": true,
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+
+  "json.maxItemsComputed": 15000,
+  "liveSassCompile.settings.autoprefix": [],
+
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "emmet.excludeLanguages": ["markdown"],
   "emmet.includeLanguages": {
     "javascript": "javascriptreact"
   }
