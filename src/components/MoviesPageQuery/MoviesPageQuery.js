@@ -1,7 +1,6 @@
 import { Link, withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import './MoviesPageQuery.scss';
-import defaultImage from '../../img/default.png';
 import MoviesPageQueryItem from './MoviesPageQueryItem';
 
 const MoviesPageQuery = ({ movies, location, baseUrl }) => {
@@ -23,25 +22,17 @@ const MoviesPageQuery = ({ movies, location, baseUrl }) => {
                   poster={poster_path}
                   title={title}
                   baseUrl={baseUrl}
-                  defaultImage={defaultImage}
                 />
               </Link>
-            </li>w
+            </li>
           ))}
       </ul>
     </div>
   );
 };
 
-MoviesPageQuery.defaultProps = {
-  poster_path: defaultImage,
-  title: 'Nothing Found',
-};
-
 MoviesPageQuery.propTypes = {
-  poster_path: PropTypes.string,
   id: PropTypes.number,
-  title: PropTypes.string,
   location: PropTypes.object.isRequired,
   movies: PropTypes.array.isRequired,
 };

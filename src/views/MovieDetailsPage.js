@@ -55,9 +55,6 @@ export default class MovieDetailsPage extends Component {
       from: { pathname: routes.home },
     };
 
-    console.log('History', this.props.history.location.state);
-    console.log('Location', this.props.location.state);
-
     const {
       release_date,
       budget,

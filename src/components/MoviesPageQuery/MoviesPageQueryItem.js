@@ -1,4 +1,7 @@
-const MoviesPageQueryItem = ({ poster, baseUrl, title, defaultImage }) => {
+import PropTypes from 'prop-types';
+import defaultImage from '../../img/default.png';
+
+const MoviesPageQueryItem = ({ poster, baseUrl, title }) => {
   return (
     <div>
       <div>
@@ -8,6 +11,17 @@ const MoviesPageQueryItem = ({ poster, baseUrl, title, defaultImage }) => {
       <h3 className="MoviesPageQuery-title">{title}</h3>
     </div>
   );
+};
+
+MoviesPageQueryItem.defaultProps = {
+  poster: defaultImage,
+  title: 'Nothing Found',
+};
+
+MoviesPageQueryItem.propTypes = {
+  poster: PropTypes.string.isRequired,
+  baseUrl: PropTypes.string,
+  title: PropTypes.string.isRequired,
 };
 
 export default MoviesPageQueryItem;
