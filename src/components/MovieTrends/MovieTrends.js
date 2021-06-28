@@ -1,5 +1,6 @@
 import { Link, withRouter } from 'react-router-dom';
-import defaultImage from '../../img/default.png';
+import MovieTrendsItem from './MovieTrendsItem';
+
 import PropTypes from 'prop-types';
 
 const MovieTrends = ({ movies, baseUrl, location }) => {
@@ -17,10 +18,10 @@ const MovieTrends = ({ movies, baseUrl, location }) => {
                 },
               }}
             >
-              <h3 className="HomeList-title">{title}</h3>
-              <img
-                src={poster_path ? `${baseUrl}${poster_path}` : defaultImage}
-                alt={title}
+              <MovieTrendsItem
+                title={title}
+                poster={poster_path}
+                baseUrl={baseUrl}
               />
             </Link>
           </li>
@@ -30,18 +31,10 @@ const MovieTrends = ({ movies, baseUrl, location }) => {
   );
 };
 
-MovieTrends.defaultProps = {
-  poster_path: defaultImage,
-  title: 'Nothing Found',
-};
-
 MovieTrends.propTypes = {
   movies: PropTypes.arrayOf(PropTypes.shape).isRequired,
-  baseUrl: PropTypes.string,
-  title: PropTypes.string,
   id: PropTypes.number,
-  poster_path: PropTypes.string,
-  location: PropTypes.shape().isRequired,
+  location: PropTypes.object.isRequired,
 };
 
 export default withRouter(MovieTrends);

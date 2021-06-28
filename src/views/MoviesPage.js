@@ -3,18 +3,18 @@ import MoviesPageQuery from '../components/MoviesPageQuery';
 import API from '../services/moviesApi';
 import SearchBar from '../components/SearchBar';
 import queryString from 'query-string';
+import Button from '@material-ui/core/Button';
 
 class MoviesPage extends Component {
   state = {
     query: '',
     movies: [],
+    page: 1,
     base_url: 'https://image.tmdb.org/t/p/w500',
   };
 
   componentDidMount = () => {
     const { query } = this.getQueryFromProps(this.props);
-
-    console.log('query', query);
 
     if (query) {
       this.setState({ query });
@@ -22,21 +22,34 @@ class MoviesPage extends Component {
   };
 
   componentDidUpdate(prevProps, prevState) {
-    const { query } = this.state;
+    const { query, movies } = this.state;
 
-    if (prevState.query !== this.state.query) {
+    if (prevState.query !== query) {
       this.fetchMovies();
+
       this.props.history.push({ search: `query=${query}` });
+    }
+
+    if (movies.length > 20) {
+      window.scrollTo({
+        top: document.documentElement.scrollHeight,
+        behavior: 'smooth',
+      });
     }
   }
 
   async fetchMovies() {
-    const { query } = this.state;
+    const { query, page } = this.state;
+    const option = {
+      query,
+      page,
+    };
 
-    API.getMovieByQuery(query).then(data => {
-      this.setState({
-        movies: data,
-      });
+    API.getMovieByQuery(option).then(data => {
+      this.setState(prevState => ({
+        movies: [...prevState.movies, ...data],
+        page: prevState.page + 1,
+      }));
     });
   }
 
@@ -44,19 +57,44 @@ class MoviesPage extends Component {
     this.setState({
       query,
       movies: [],
+      page: 1,
+    });
+  };
+  onBtnClickUp = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
     });
   };
 
   getQueryFromProps = props => queryString.parse(props.location.search);
 
   render() {
-    const { movies, base_url } = this.state;
+    const { movies, base_url, page } = this.state;
 
     return (
       <div className="Movies-container">
         <SearchBar onSubmit={this.onChangeQuery} />
-
         {movies && <MoviesPageQuery movies={movies} baseUrl={base_url} />}
+        {movies.length > 0 && (
+          <div>
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={() => this.fetchMovies(page + 1)}
+            >
+              More movies
+            </Button>
+
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={this.onBtnClickUp}
+            >
+              UP
+            </Button>
+          </div>
+        )}
       </div>
     );
   }

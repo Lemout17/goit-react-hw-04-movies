@@ -19,7 +19,7 @@ MoviesPageQueryItem.defaultProps = {
 };
 
 MoviesPageQueryItem.propTypes = {
-  poster: PropTypes.string.isRequired,
+  poster: PropTypes.string,
   baseUrl: PropTypes.string,
   title: PropTypes.string.isRequired,
 };
